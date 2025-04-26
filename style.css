@@ -1,0 +1,84 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+}
+
+h1 {
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px 0;
+  margin: 0;
+  font-size: 2em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.container {
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border: 2px solid #008cba;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 150px;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 10px auto;
+  display: block;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background-color: #005f6b;
+}
+
+#qrcode {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  display: inline-block;
+  /* background: white; */
+}
+#pdf-area {
+  width: 210mm;
+  height: 297mm;
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  text-align: center;
+  position: relative;
+}
+
+.pdf-heading {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+#pdf-qrcode {
+  padding: 10px;
+  border: none;
+  display: inline-block;
+  background: white;
+}
+
