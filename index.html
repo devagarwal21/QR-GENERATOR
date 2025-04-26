@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <h1>Welcome to QR Generator</h1>
+
+  <div class="container">
+    <input type="text" id="text" placeholder="Enter text or URL" />
+    <button onclick="generateQR()">Generate QR</button>
+    <button onclick="downloadQR()">Download</button>
+    <div id="qrcode"></div>
+    <div id="pdf-content" style="display: none;">
+        <div id="pdf-area">
+          <h2 class="pdf-heading">QR CODE</h2>
+          <div id="pdf-qrcode"></div>
+        </div>
+      </div>
+      
+  </div>
+
+  <script>
+    let qr;
+
+    function generateQR() {
+      const qrcodeDiv = document.getElementById("qrcode");
+      qrcodeDiv.innerHTML = ""; // clear previous QR
+      const text = document.getElementById("text").value;
+
+      if (!text) {
+        alert("Please enter some text or URL");
+        return;
+      }
+
+      qr = new QRCode(qrcodeDiv, {
+        text: text,
+        width: 300,
+        height: 300,
+      });
+    }
+
+    function downloadQR() {
+  const text = document.getElementById("text").value;
+  if (!text) {
+    alert("Please generate a QR code first.");
+    return;
+  }
+
+  // Generate QR for PDF area
+  document.getElementById("pdf-qrcode").innerHTML = "";
+  new QRCode(document.getElementById("pdf-qrcode"), {
+    text: text,
+    width: 300,
+    height: 300,
+  });
+
+  // Wait a bit for QR to render
+  setTimeout(() => {
+    const element = document.getElementById("pdf-area");
+    html2pdf()
+      .from(element)
+      .set({
+        margin: 0,
+        filename: "qr_code.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 4 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      })
+      .save();
+  }, 500);
+}
+
+  </script>
+</body>
+</html>
